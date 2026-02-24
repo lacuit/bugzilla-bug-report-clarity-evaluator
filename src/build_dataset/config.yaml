@@ -1,0 +1,41 @@
+bugzilla_config:
+  base_url: "https://bugzilla.mozilla.org"
+  use_need_info_proxy: false  # Use proxy for needinfo detection if true
+
+search_config:
+  product: "firefox"
+  lookback_days: 3650  # Number of days to look back for bug creation
+  interested_fields:
+    # Default fields that will always be included
+    - id
+    - creator
+    - creation_time
+    - status
+    - summary
+    # Selected additional fields from Bugzilla API 
+    # https://bugzilla.readthedocs.io/en/latest/api/core/v1/bug.html#get-bug
+    # currently only supported for simple scalar fields, must be non array/object
+    - component
+    - version
+    - op_sys
+    - platform
+    - classification
+    - product
+    - severity
+    - priority
+    - url
+
+api_fetch_config:
+  page_size: 10  # Number of bugs per page
+  worker_concurrency_limit: 10  # Number of worker coroutines fetching pages
+  parallel_requests_limit: 20  # Max simultaneous requests
+  pages_per_batch: 100  # Pages to collect before saving a batch
+  retry_max_attempt: 3  # Max retry attempts for failed requests
+  base_retry_delay_s: 5  # Base delay in seconds for exponential backoff
+
+dataset_store_config:
+  store_dir_temp: dataset_temp  # Temp directory for intermediate storage
+  comment_separator: "<COMMENT_SEP>"  # Separator for merged comments
+
+log_config:
+  level: INFO  # Logging level (DEBUG, INFO, WARNING, ERROR)

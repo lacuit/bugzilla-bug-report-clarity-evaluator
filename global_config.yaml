@@ -1,0 +1,3 @@
+dataset_store_config:
+  # Path to the final merged dataset Parquet file
+  output_path_parquet: dataset.parquet

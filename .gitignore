@@ -1,0 +1,5 @@
+__pycache__
+dataset_temp*
+dataset.parquet
+catboost_info
+saved_model

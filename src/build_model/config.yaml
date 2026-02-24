@@ -1,0 +1,35 @@
+# must be a subset of the features extracted during dataset building
+model_features_config:
+  # must have at least 1 feature
+  textual: 
+    - comments
+    - summary
+    - url
+  categorical:
+    - classification
+    - component
+    - op_sys
+    - platform
+    - priority
+    - product
+    - severity
+    - status
+    - version
+  random_state: 42
+
+embeddings_config:
+  # embeddings model to load from HuggingFace
+  # https://huggingface.co/models?library=sentence-transformers&author=sentence-transformers
+  model_to_load: "sentence-transformers-testing/stsb-bert-tiny-safetensors"
+  content_chunk_size: 0.8 # with remaining being neighbouring chunk to retain some context
+  word_to_token_ratio: 1.4 # estimated mapping count of word -> token translation
+  encode_batch_size: 8 # encoding batch size
+
+dataset_config:
+  dataset_sample: 0.1 # percent of dataset used for benchmarking
+
+model_save_config:
+  store_dir: saved_model
+
+log_config:
+  level: INFO
